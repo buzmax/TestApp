@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.revoluttest.viewmodel.CurrencyItemViewModel" />
+
+        <variable
+            name="moneyFilter"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_currency_name"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin"
+            android:gravity="center"
+            android:text="@{viewModel.currency.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="EUR" />
+
+        <com.revoluttest.view.MoneyEditText
+            android:id="@+id/tv_currency_value"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:text="@{viewModel.exchangedAmount}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onAmountChanged="@{viewModel.amountListener}"
+            app:onSelected="@{() -> viewModel.onSelected()}"
+            tools:text="100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
